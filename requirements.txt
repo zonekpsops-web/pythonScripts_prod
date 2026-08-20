@@ -1,0 +1,12 @@
+# python
+fastapi
+uvicorn
+SQLAlchemy
+pydantic
+email-validator
+faker
+streamlit
+pandas
+plotly
+requests
+aiosqlite
