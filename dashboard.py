@@ -1,14 +1,16 @@
+import os
+import json
 import streamlit as st
 import requests
 import pandas as pd
 import plotly.express as px
-import json
 
 st.set_page_config(page_title="E-Commerce Analytics", layout="wide")
 st.title("📊 Enterprise Database & Multi-Category Transaction Dashboard")
 
-API_URL = "http://127.0.0.1:8000/analytics/summary"
+API_URL = os.getenv("API_URL", "http://127.0.0.1:8000/analytics/summary")
 
+# comment: The code fetches payment data from the FastAPI backend and displays it in a Streamlit dashboard. It includes filtering options, key metrics, visualizations for revenue by category and payment mode distribution, and a table showing recent payments with dynamic item specifications.
 try:
     response = requests.get(API_URL)
     if response.status_code == 200:

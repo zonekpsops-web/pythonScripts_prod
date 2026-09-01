@@ -1,4 +1,4 @@
-# python
+# python -13
 fastapi
 uvicorn
 SQLAlchemy
@@ -10,3 +10,4 @@ pandas
 plotly
 requests
 aiosqlite
+psycopg[binary]>=3.1.0
