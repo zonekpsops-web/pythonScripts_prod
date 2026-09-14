@@ -16,11 +16,11 @@ DATABASE_URL = f"postgresql+asyncpg://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT
 engine = create_async_engine(DATABASE_URL, echo=True)
 
 # Create a session factory for asynchronous sessions
-AsyncSessionLocal = async_sessionmaker(bind=engine, class=AsyncSession, expire_on_commit=False)
+AsyncSessionLocal = async_sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
 
 Base = declarative_base()
 
 # fastapi dependency to get the database session
 async def get_db():
-    async with AsyncSessionLocal() as session
+    async with AsyncSessionLocal() as session:
         yield session
