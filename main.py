@@ -2,10 +2,21 @@ from fastapi import FastAPI, Depends, status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.future import select
 from sqlalchemy.orm import joinedload
-from database import engine, Base, get_db_session
+from database import engine, Base, get_db
 import models, schema
 
 app = FastAPI(title="Enterprise E-Commerce Backend")
+
+
+@app.get("/health/db")
+async def test_db_connection(db: AsyncSession = Depends(get_db)):
+    try:
+        # execute a simple query to test the database connection
+        result = await db.execute(text("SELECT 1"))
+        return {"status": "connected", "result": result.scalar()}
+    except Exception as e:
+        return {"status": "error", "details": str(e)}
+
 
 # comment: The code defines a FastAPI application with endpoints for creating users, items, and payments, as well as an analytics summary endpoint. It uses SQLAlchemy for database interactions and includes asynchronous session management. The analytics endpoint retrieves payment data along with related user and item information, returning it in a structured format for dashboard visualization.
 @app.get("/")

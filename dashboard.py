@@ -5,6 +5,7 @@ import requests
 import pandas as pd
 import plotly.express as px
 
+
 st.set_page_config(page_title="E-Commerce Analytics", layout="wide")
 st.title("📊 Enterprise Database & Multi-Category Transaction Dashboard")
 
